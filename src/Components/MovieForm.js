@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import MovieList from "./MovieList";
 
-function MovieForm({movies:{name, description, user_id}}) {
+function MovieForm({currentUser, setMovies, movies}) {
 
-    const [newName, setNewName] = useState("")
-    const [newDescription, setNewDescription] = useState("")
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -13,19 +14,21 @@ function MovieForm({movies:{name, description, user_id}}) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: newName,
-        description: newDescription,
-        user_id: user_id
+        name: name,
+        description: description,
+        user_id: currentUser.id
       }),
     })
+    .then(r => r.json())
+    .then(newMovie => setMovies([...movies, newMovie]))
     }
 
     return (
         <div>
             <h3>Movie Form</h3>
             <form onSubmit={handleSubmit}>
-                <input onChange={(e) => setNewName(e.target.value)}></input>
-                <input onChange={(e) => setNewDescription(e.target.value)}></input>
+                <input onChange={(e) => setName(e.target.value)}></input>
+                <input onChange={(e) => setDescription(e.target.value)}></input>
                 <button>Submit</button>
             </form>
         </div>

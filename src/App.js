@@ -1,14 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './Components/Header.js'
 import MovieList from './Components/MovieList.js'
 import MovieForm from './Components/MovieForm';
 import { useState, useEffect } from "react";
+import Navbar from './Components/Navbar';
 
 
 function App() {
 
   const [movies, setMovies] = useState([])
+  const [allUsers, setAllUsers] = useState([])
+  const [currentUser, setCurrentUser] = useState([])
 
   useEffect(() => {
       fetch("http://localhost:9292/movies")
@@ -16,15 +18,17 @@ function App() {
       .then((data) => setMovies(data));
     }, [])
 
+    useEffect(() => {
+      fetch("http://localhost:9292/users")
+      .then((r) => r.json())
+      .then((data) => setAllUsers(data));
+    },[])
+
   return (
     <div className="App">
-      <MovieForm movies={movies}/>
-      <header className="App-header">
-        <Header />
-      </header>
-        
-        <MovieList movies={movies} setMovies={setMovies}/>
-        
+      <Navbar allUsers={allUsers} setCurrentUser={setCurrentUser}/>
+      <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
+      <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
     </div>
   );
 }

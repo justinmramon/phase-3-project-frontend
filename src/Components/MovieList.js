@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState } from "react";
 
-function MovieList({movies, setMovies}){
+function MovieList({movies, setMovies, currentUser}){
 
 
 
@@ -13,15 +13,19 @@ function MovieList({movies, setMovies}){
         setMovies(moviesToDisplay)
       }
 
+    const moviesToDisplay = movies.filter(movie => movie.user_id === currentUser.id)
+
     return(
         <div>
-        <ul>
-            {movies.map((movie) => 
-                <li key={movie.id}>{movie.name}
-                <button onClick={() => handleDelete(movie.id)}>x</button>
-                </li>
-            )}
-        </ul>
+            <h2>Movies</h2>
+            <ul>
+                {moviesToDisplay.map((movie) => 
+                    <li key={movie.id}>
+                        {movie.name}
+                        <button onClick={() => handleDelete(movie.id)}>Delete</button>
+                    </li>
+                )}
+            </ul>
         </div>
     )
 }
