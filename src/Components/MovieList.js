@@ -1,16 +1,9 @@
 import React from "react";
+import MovieCard from "./MovieCard";
 import {useEffect, useState } from "react";
 
 function MovieList({movies, setMovies, currentUser}){
 
-
-      function handleDelete(id){
-        fetch(`http://localhost:9292/movies/${id}`,{
-            method: "DELETE",
-        })
-        const moviesToDisplay = movies.filter(movie => movie.id !== id)
-        setMovies(moviesToDisplay)
-      }
 
     const moviesToDisplay = movies.filter(movie => movie.user_id === currentUser.id)
 
@@ -19,22 +12,7 @@ function MovieList({movies, setMovies, currentUser}){
             <h2>Movies</h2>
             <ul>
                 {moviesToDisplay.map((movie) => 
-                    <li key={movie.id}>
-                        {movie.name}
-                        <button onClick={() => handleDelete(movie.id)}>Delete</button>
-                        <button>Edit</button>
-                        <div>
-                            <h3>Edit Movie</h3>
-                            <form>
-                                <input placeholder="Title"></input>
-                                <input placeholder="Synopsis"></input>
-                                <button>Submit</button>
-                            </form>
-                        </div>
-                        
-                    </li>
-            
-                    
+                    <MovieCard movie={movie} key={movie.id} setMovies={setMovies} movies={movies} />    
                 )}
             </ul>
             
