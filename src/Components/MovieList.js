@@ -4,7 +4,6 @@ import {useEffect, useState } from "react";
 function MovieList({movies, setMovies, currentUser}){
 
 
-
       function handleDelete(id){
         fetch(`http://localhost:9292/movies/${id}`,{
             method: "DELETE",
@@ -23,9 +22,22 @@ function MovieList({movies, setMovies, currentUser}){
                     <li key={movie.id}>
                         {movie.name}
                         <button onClick={() => handleDelete(movie.id)}>Delete</button>
+                        <button>Edit</button>
+                        <div>
+                            <h3>Edit Movie</h3>
+                            <form>
+                                <input placeholder="Title"></input>
+                                <input placeholder="Synopsis"></input>
+                                <button>Submit</button>
+                            </form>
+                        </div>
+                        
                     </li>
+            
+                    
                 )}
             </ul>
+            
         </div>
     )
 }

@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import MovieList from './Components/MovieList.js'
-import MovieForm from './Components/MovieForm';
+import MovieForm from './Components/MovieForm.js';
+import UserForm from './Components/UserForm.js';
 import { useState, useEffect } from "react";
 import Navbar from './Components/Navbar';
 
@@ -29,6 +29,7 @@ function App() {
       <Navbar allUsers={allUsers} setCurrentUser={setCurrentUser}/>
       <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
       <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
+      <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
     </div>
   );
 }
