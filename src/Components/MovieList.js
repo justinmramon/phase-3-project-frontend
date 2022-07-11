@@ -1,15 +1,9 @@
 import React from "react";
 import {useEffect, useState } from "react";
 
-function MovieList(){
+function MovieList({movies, setMovies}){
 
-    const [movies, setMovies] = useState([])
 
-    useEffect(() => {
-        fetch("http://localhost:9292/movies")
-        .then((r) => r.json())
-        .then((data) => setMovies(data));
-      }, [])
 
       function handleDelete(id){
         fetch(`http://localhost:9292/movies/${id}`,{
