@@ -34,14 +34,16 @@ function App() {
       <div className="App">
         <nav>
             {allUsers.map(user => {
-                return <span onClick={() => setCurrentUser(user)} key={user.id}>{user.name}</span>
+                return <NavLink to="/movielist"><span onClick={() => setCurrentUser(user)} key={user.id}>{user.name}</span></NavLink>
             })}
             <NavLink to="/movieform"><span>New Movie</span></NavLink>
             <NavLink to="/userform"><span>New User</span></NavLink>
         </nav>
-        <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
 
         <Switch>
+          <Route>
+            <MovieList path="/movielist" movies={movies} setMovies={setMovies} currentUser={currentUser}/>
+          </Route>
           <Route path="/movieform">
             <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
           </Route>
