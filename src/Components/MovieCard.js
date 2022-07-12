@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 function MovieCard({movie, setMovies, movies}) {
 
+  const [currentMovie, setCurrentMovie] = useState(movie) 
+
+
     const [editName, setEditName] = useState('')
     const [editDescription, setEditDescription] = useState('')
 
@@ -15,7 +18,7 @@ function MovieCard({movie, setMovies, movies}) {
 
       function handleSubmit(e) {
         e.preventDefault()
-        fetch(`http://localhost:9292/movies/${movie.id}`, {
+        fetch(`http://localhost:9292/movies/${currentMovie.id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -25,15 +28,15 @@ function MovieCard({movie, setMovies, movies}) {
               description: editDescription,
             }),
           })
-        fetch("http://localhost:9292/movies")
-        .then((r) => r.json())
-        .then((data) => setMovies(data));
+          .then((r) => r.json())
+          .then((updatedMovie) => setCurrentMovie(updatedMovie));
+        
       }
 
     return (
         <li>
-        {movie.name}
-        <button onClick={() => handleDelete(movie.id)}>Delete</button>
+        {currentMovie.name}
+        <button onClick={() => handleDelete(currentMovie.id)}>Delete</button>
         <button>Edit</button>
         <div>
             <h3>Edit Movie</h3>
