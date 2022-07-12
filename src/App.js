@@ -3,7 +3,12 @@ import MovieList from './Components/MovieList.js'
 import MovieForm from './Components/MovieForm.js';
 import UserForm from './Components/UserForm.js';
 import { useState, useEffect } from "react";
-import Navbar from './Components/Navbar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom";
 
 
 function App() {
@@ -25,12 +30,28 @@ function App() {
     },[])
 
   return (
-    <div className="App">
-      <Navbar allUsers={allUsers} setCurrentUser={setCurrentUser}/>
-      <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
-      <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
-      <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
-    </div>
+    <Router>
+      <div className="App">
+        <nav>
+            {allUsers.map(user => {
+                return <span onClick={() => setCurrentUser(user)} key={user.id}>{user.name}</span>
+            })}
+            <NavLink to="/movieform"><span>New Movie</span></NavLink>
+            <NavLink to="/userform"><span>New User</span></NavLink>
+        </nav>
+        <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
+
+        <Switch>
+          <Route path="/movieform">
+            <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
+          </Route>
+          <Route path="/userform">
+            <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+    
   );
 }
 
