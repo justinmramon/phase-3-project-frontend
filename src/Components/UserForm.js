@@ -7,14 +7,14 @@ function UserForm({allUsers, setAllUsers}) {
     function handleSubmit(e) {
         e.preventDefault()
         fetch("http://localhost:9292/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: newUser,
-      }),
-    })
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: newUser,
+          }),
+      })
       .then((r) => r.json())
       .then((newUser) => setAllUsers([...allUsers, newUser]));
     }
@@ -26,7 +26,6 @@ function UserForm({allUsers, setAllUsers}) {
                 <input placeholder="Name" onChange={(e) => setNewUser(e.target.value)}></input>
                 <button>Create</button>
             </form>
-            
         </div>
         
     )
