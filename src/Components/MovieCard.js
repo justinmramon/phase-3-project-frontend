@@ -3,9 +3,11 @@ import React, { useState } from "react";
 function MovieCard({movie, setMovies, movies}) {
 
     const [currentMovie, setCurrentMovie] = useState(movie) 
-    const [editName, setEditName] = useState('')
-    const [editDescription, setEditDescription] = useState('')
+    const [editName, setEditName] = useState(currentMovie.name)
+    const [editDescription, setEditDescription] = useState(currentMovie.description)
     const [isEditing, setIsEditing] = useState(false)
+
+
 
     function handleDelete(id){
         fetch(`http://localhost:9292/movies/${id}`,{
@@ -18,6 +20,7 @@ function MovieCard({movie, setMovies, movies}) {
       function handleSubmit(e) {
         
         e.preventDefault()
+
         
         fetch(`http://localhost:9292/movies/${currentMovie.id}`, {
             method: "PATCH",
@@ -34,12 +37,18 @@ function MovieCard({movie, setMovies, movies}) {
         }
 
     return (
-        <li>
-        <span>{currentMovie.name}</span>
-        <button onClick={() => handleDelete(currentMovie.id)}>Delete</button>
-        <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
+      <li>
+        <div>
+            <span>{currentMovie.name}</span>
+            <span>Rating: {currentMovie.rating}/5</span>
+            <button onClick={() => handleDelete(currentMovie.id)}>Delete</button>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <img src={currentMovie.image_url}></img>
+        </div>
+        
         <div style={isEditing === false ? {display: "none"} : {display: ""}}>
             <h3>Edit Movie</h3>
+            <button onClick={() => setIsEditing(false)}>X</button>
             <form onSubmit={handleSubmit} >
                 <input placeholder="Title" onChange={(e) => setEditName(e.target.value)}></input>
                 <input placeholder="Synopsis" onChange={(e) => setEditDescription(e.target.value)}></input>
@@ -47,7 +56,7 @@ function MovieCard({movie, setMovies, movies}) {
             </form>
         </div>
         
-    </li>
+      </li>
     )
 }
 

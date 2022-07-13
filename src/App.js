@@ -33,16 +33,22 @@ function App() {
     <Router>
       <div className="App">
         <nav>
-            {allUsers.map(user => {
-                return <NavLink to="/movielist"><span onClick={() => setCurrentUser(user)} key={user.id}>{user.name}</span></NavLink>
-            })}
-            <NavLink to="/movieform"><span>New Movie</span></NavLink>
-            <NavLink to="/userform"><span>New User</span></NavLink>
+            <NavLink exact to="/" style={{textDecoration: 'none'}}><span onClick={() => setCurrentUser([])}>Home</span></NavLink>
+            
+            <NavLink to="/userform"><span onClick={() => setCurrentUser([])}>New User</span></NavLink>
         </nav>
+        <nav>
+            {allUsers.map(user => {
+                return <NavLink to="/movielist" key={user.id}><span onClick={() => setCurrentUser(user)}>{user.name}</span></NavLink>
+            })}
+        </nav>
+        
+
+        
 
         <Switch>
-          <Route>
-            <MovieList path="/movielist" movies={movies} setMovies={setMovies} currentUser={currentUser}/>
+          <Route path="/movielist">
+            <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
           </Route>
           <Route path="/movieform">
             <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
@@ -51,6 +57,7 @@ function App() {
             <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
           </Route>
         </Switch>
+        {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span>Add Movie for {currentUser.name}</span></NavLink>}
       </div>
     </Router>
     

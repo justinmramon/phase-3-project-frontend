@@ -9,7 +9,7 @@ function MovieList({movies, setMovies, currentUser}){
 
     return(
         <div>
-            <h2>Movies</h2>
+            <h2>{currentUser.name}'s Watchlist</h2>
             <ul>
                 {moviesToDisplay.map((movie) => 
                     <MovieCard movie={movie} key={movie.id} setMovies={setMovies} movies={movies} />    
