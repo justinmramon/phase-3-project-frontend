@@ -21,13 +21,13 @@ function MovieForm({currentUser, setMovies, movies}) {
             }),
         })
         .then(r => r.json())
-        .then(newMovie => setMovies([...movies, newMovie]))
+        .then(newMovie => setMovies([newMovie, ...movies]))
     }
 
     return (
         <div>
             <h3>Movie Form</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} to="/movielist">
                 <input onChange={(e) => setName(e.target.value)} placeholder="Title"></input>
                 <input onChange={(e) => setDescription(e.target.value)} placeholder="Synopsis"></input>
                 <input onChange={(e) => setPosterUrl(e.target.value)} placeholder="Image"></input>

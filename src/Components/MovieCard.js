@@ -3,7 +3,6 @@ import React, { useState } from "react";
 function MovieCard({movie, setMovies, movies}) {
 
     const [currentMovie, setCurrentMovie] = useState(movie) 
-    const [editName, setEditName] = useState(currentMovie.name)
     const [editDescription, setEditDescription] = useState(currentMovie.description)
     const [isEditing, setIsEditing] = useState(false)
 
@@ -28,7 +27,6 @@ function MovieCard({movie, setMovies, movies}) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              name: editName,
               description: editDescription,
             }),
           })
@@ -38,22 +36,23 @@ function MovieCard({movie, setMovies, movies}) {
 
     return (
       <li>
-        <div>
+        <div className="movie-card">
             <span>{currentMovie.name}</span>
-            <button onClick={() => handleDelete(currentMovie.id)}>Delete</button>
-            <button onClick={() => setIsEditing(true)}>Edit</button>
+            
             <img alt="" src={currentMovie.poster_url}></img>
             <p>{currentMovie.description}</p>
+            <button onClick={() => handleDelete(currentMovie.id)}>Delete</button>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
         </div>
         
-        <div style={isEditing === false ? {display: "none"} : {display: ""}}>
+        <div className="edit-form" style={isEditing === false ? {display: "none"} : {display: ""}}>
+            <button className="x-button" onClick={() => setIsEditing(false)}>X</button>
             <h3>Edit Movie</h3>
-            <button onClick={() => setIsEditing(false)}>X</button>
             <form onSubmit={handleSubmit} >
-                <input placeholder="Title" onChange={(e) => setEditName(e.target.value)}></input>
                 <input placeholder="Synopsis" onChange={(e) => setEditDescription(e.target.value)}></input>
                 <button>Submit</button>
             </form>
+            
         </div>
         
       </li>

@@ -1,3 +1,46 @@
+.users-btn:hover {
+  cursor: pointer;
+}
+
 li {
   list-style: none;
+  
 }
+
+li .movie-card {
+  background-color: red;
+  width: 500px;
+  margin: 10px 10px 10px 10px;
+  min-height: 200px;
+  border: solid 4px black;
+}
+
+.movie-card span {
+  font-size: 20pt;
+
+}
+
+.movie-card img {
+  height: 200px;
+  float: right;
+}
+
+.movie-card button {
+  margin-top: 100px;
+}
+
+.edit-form {
+  border: solid 1px black;
+  margin: 10px 10px 10px 10px;
+  width: 300px;
+}
+
+.x-button {
+  margin-left: 275px;
+}
+
+li h3 {
+  margin-top: -20px;
+}
+
+

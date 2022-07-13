@@ -16,6 +16,7 @@ function App() {
   const [movies, setMovies] = useState([])
   const [allUsers, setAllUsers] = useState([])
   const [currentUser, setCurrentUser] = useState([])
+  const [showUsers, setShowUsers] = useState(false)
 
   useEffect(() => {
       fetch("http://localhost:9292/movies")
@@ -31,21 +32,21 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <nav>
-            <NavLink exact to="/" style={{textDecoration: 'none'}}><span onClick={() => setCurrentUser([])}>Home</span></NavLink>
+      <div>
+            <NavLink exact to="/" style={{textDecoration: 'none'}}>
+              <span onClick={() => {
+                setCurrentUser([])
+                setShowUsers(false)}}>Home</span>
+            </NavLink>
+            <span className='users-btn' onClick={() => setShowUsers(!showUsers)} >Users</span>
             
-            <NavLink to="/userform"><span onClick={() => setCurrentUser([])}>New User</span></NavLink>
-        </nav>
-        <nav>
-            {allUsers.map(user => {
-                return <NavLink to="/movielist" key={user.id}><span onClick={() => setCurrentUser(user)}>{user.name}</span></NavLink>
-            })}
-        </nav>
-        
-
-        
-
+            <nav>
+              {showUsers === false ? <></> : allUsers.map(user => (
+                <NavLink to="/movielist" key={user.id}><span onClick={() => setCurrentUser(user)}>{user.name}</span></NavLink>
+              ))}
+              {showUsers === false ? <></> : <NavLink to="/userform" style={{textDecoration: 'none'}}><span onClick={() => setCurrentUser([])}>New User</span></NavLink>}
+            </nav>
+            
         <Switch>
           <Route path="/movielist">
             <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
@@ -56,8 +57,7 @@ function App() {
           <Route path="/userform">
             <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
           </Route>
-        </Switch>
-       
+        </Switch> 
       </div>
     </Router>
     
