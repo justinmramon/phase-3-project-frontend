@@ -1,6 +1,6 @@
 import React from "react";
 import MovieCard from "./MovieCard";
-import {useEffect, useState } from "react";
+import {NavLink} from "react-router-dom";
 
 function MovieList({movies, setMovies, currentUser}){
 
@@ -9,7 +9,8 @@ function MovieList({movies, setMovies, currentUser}){
 
     return(
         <div>
-            <h2>{currentUser.name}'s Watchlist</h2>
+            {currentUser.length === 0 ? <></> : <h2>{currentUser.name}'s Watchlist</h2>}
+            {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span>Add Movie for {currentUser.name}</span></NavLink>}
             <ul>
                 {moviesToDisplay.map((movie) => 
                     <MovieCard movie={movie} key={movie.id} setMovies={setMovies} movies={movies} />    

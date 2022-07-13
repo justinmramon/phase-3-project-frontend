@@ -57,7 +57,7 @@ function App() {
             <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
           </Route>
         </Switch>
-        {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span>Add Movie for {currentUser.name}</span></NavLink>}
+       
       </div>
     </Router>
     

@@ -1,7 +1,3 @@
-li{
-background-color: black;
-color: gray;
-text-decoration: none;
+li {
+  list-style: none;
 }
-
-
