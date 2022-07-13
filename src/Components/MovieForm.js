@@ -4,6 +4,7 @@ function MovieForm({currentUser, setMovies, movies}) {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
+    const [posterUrl, setPosterUrl] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -15,7 +16,8 @@ function MovieForm({currentUser, setMovies, movies}) {
             body: JSON.stringify({
                 name: name,
                 description: description,
-                user_id: currentUser.id
+                user_id: currentUser.id,
+                poster_url: posterUrl
             }),
         })
         .then(r => r.json())
@@ -28,6 +30,7 @@ function MovieForm({currentUser, setMovies, movies}) {
             <form onSubmit={handleSubmit}>
                 <input onChange={(e) => setName(e.target.value)} placeholder="Title"></input>
                 <input onChange={(e) => setDescription(e.target.value)} placeholder="Synopsis"></input>
+                <input onChange={(e) => setPosterUrl(e.target.value)} placeholder="Image"></input>
                 <button>Submit</button>
             </form>
         </div>

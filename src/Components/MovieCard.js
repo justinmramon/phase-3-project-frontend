@@ -40,10 +40,10 @@ function MovieCard({movie, setMovies, movies}) {
       <li>
         <div>
             <span>{currentMovie.name}</span>
-            <span>Rating: {currentMovie.rating}/5</span>
             <button onClick={() => handleDelete(currentMovie.id)}>Delete</button>
             <button onClick={() => setIsEditing(true)}>Edit</button>
-            <img src={currentMovie.image_url}></img>
+            <img alt="" src={currentMovie.poster_url}></img>
+            <p>{currentMovie.description}</p>
         </div>
         
         <div style={isEditing === false ? {display: "none"} : {display: ""}}>

@@ -1,20 +1,7 @@
-.App {
-  /* text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white; */
+li{
+background-color: black;
+color: gray;
+text-decoration: none;
 }
 
-span {
 
-}
-
-li div:first{
-  list-style: none;
-  background-color: beige;
-}
