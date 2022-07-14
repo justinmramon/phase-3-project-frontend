@@ -10,26 +10,11 @@ import {
     NavLink
   } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ setAllUsers, setCurrentUser, allUsers }) {
 
-    const [movies, setMovies] = useState([])
-    const [allUsers, setAllUsers] = useState([])
-    const [currentUser, setCurrentUser] = useState([])
     const [showUsers, setShowUsers] = useState(false)
-    const [nav, setNav] = useState(false)
+    const [nav, setNav] = useState(true)
   
-    useEffect(() => {
-        fetch("http://localhost:9292/movies")
-        .then((r) => r.json())
-        .then((data) => setMovies(data));
-      }, [])
-  
-      useEffect(() => {
-        fetch("http://localhost:9292/users")
-        .then((r) => r.json())
-        .then((data) => setAllUsers(data));
-      },[])
-
     const handleNav = () => {
         setNav(!nav)
     }
@@ -52,28 +37,18 @@ function Navbar() {
                         </NavLink>
                             <li onClick={() => setShowUsers(!showUsers)} 
                             className="p-4 border-b border-gray-600">Members</li>
+                                
                                     {showUsers === false ? <></> : allUsers.map(user => (
-                                    <NavLink to="/movielist" key={user.id}>
-                                        <li onClick={() => setCurrentUser(user)}>{user.name}</li>
+                                    <NavLink className="flex flex-col pl-4 pb-1 text-sm" onClick={() => setCurrentUser(user)} to="/movielist" key={user.id}>
+                                       {user.name}
                                     </NavLink>
                                     ))}
+                        
                         <li className="p-4 border-b border-gray-600">Films</li>
                         <li className="p-4 border-b border-gray-600">Create Account</li>
                         {showUsers === false ? <></> : <NavLink to="/userform" style={{textDecoration: 'none'}}><span onClick={() => setCurrentUser([])}>New User</span>
                         </NavLink>}
                     </ul>
-                    <Switch>
-                        <Route path="/movielist" component={MovieList}>
-                            <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
-                        </Route>
-                        <Route path="/movieform">
-                            <MovieForm movies={movies} setMovies={setMovies} currentUser={currentUser}/>
-                        </Route>
-                        <Route path="/userform">
-                            <UserForm allUsers={allUsers} setAllUsers={setAllUsers}/>
-                        </Route>
-                        {/* <Route path="/movielist" component={MovieList ...}> */}
-                    </Switch> 
                 </div>
             </div>
         </Router>

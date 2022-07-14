@@ -17,7 +17,7 @@ function MovieList({movies, setMovies, currentUser}){
     const moviesToDisplay = movies.filter(movie => movie.user_id === currentUser.id)
 
     return(
-        <div className="right-0 w-[75%]">
+        <div>
             
             {currentUser.length === 0 ? <></> : <h2 className="text-4xl leading-8 font-semibold mb-1 mt-10 px-3 text-slate-700">{currentUser.name}'s Watchlist</h2>}
             {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span className="text-slate-700 px-3 text-2xl">Add Movie for {currentUser.name}</span></NavLink>}
