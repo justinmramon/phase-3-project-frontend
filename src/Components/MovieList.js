@@ -17,7 +17,7 @@ function MovieList({movies, setMovies, currentUser}){
     const moviesToDisplay = movies.filter(movie => movie.user_id === currentUser.id)
 
     return(
-        <div className="right-0 w-[75%]">
+        <div>
             
             {currentUser.length === 0 ? <></> : <h2 className="text-4xl leading-8 font-semibold mb-1 mt-10 px-3 text-slate-700">{currentUser.name}'s Watchlist</h2>}
             {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span className="text-slate-700 px-3 text-2xl">Add Movie for {currentUser.name}</span></NavLink>}
@@ -28,8 +28,7 @@ function MovieList({movies, setMovies, currentUser}){
                     {moviesToDisplay.map((movie) => 
                         <MovieCard movie={movie} key={movie.id} setMovies={setMovies} movies={movies} />    
                     )}
-                    
-                    <button className="bg-blue-900/75 fixed bottom-0 right-0 text-white w-10 text-center opacity-75 hover:opacity-100 z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveRight}>
+                    {currentUser.length === 0 ? <></> : <button className="bg-blue-900/75 fixed bottom-0 right-0 text-white w-10 h-full text-center opacity-75 hover:opacity-100 z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveRight}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-20 -ml-5"
@@ -46,7 +45,8 @@ function MovieList({movies, setMovies, currentUser}){
                         </svg>
                         <span>Next</span>
                     </button>
-                    <button className="bg-blue-900/75 fixed bottom-0 left-0 text-white w-10 h-full text-center opacity-75 hover:opacity-100 z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveLeft}>
+                    }
+                    {currentUser.length === 0 ? <></> : <button className="bg-blue-900/75 fixed bottom-0 left-0 text-white w-10 h-full text-center opacity-75 hover:opacity-100 z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveLeft}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-20 -ml-5"
@@ -62,7 +62,8 @@ function MovieList({movies, setMovies, currentUser}){
                             />
                         </svg>
                         <span>Back</span>
-                    </button>
+                    </button>}
+                    
                 </ul>
 
                 </div>

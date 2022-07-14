@@ -33,19 +33,22 @@ function MovieCard({movie, setMovies, movies}) {
       <li >
         <div className="text-center relative w-64 h-100 snap-start">
             <div>
-                <span className="text-slate-700 py-6 px-3 mx-auto text-xl">{currentMovie.name}</span>   
+                  
                 <img alt="" src={currentMovie.poster_url}></img>
                 <p>{currentMovie.description}</p>
                 <button className="border-2 border-slate rounded hover:bg-slate-400 hover:border-slate-100" onClick={() => handleDelete(currentMovie.id)}>Delete</button>
                 <button className="border-2 border-slate rounded hover:bg-slate-400 hover:border-slate-100" onClick={() => setIsEditing(true)}>Edit</button>
             </div>
                     
-            <div className="edit-form" style={isEditing === false ? {display: "none"} : {display: ""}}>
-                <button className="x-button" onClick={() => setIsEditing(false)}>X</button>
-                <h3>Edit Movie</h3>
+            <div class=" max-w-xs rounded overflow-hidden shadow-lg"  style={isEditing === false ? {display: "none"} : {display: ""}}>
+                
+                <h3 class=" text-blue-500 text-2xl mx-14 mt-8 ">Edit Movie</h3>
                 <form onSubmit={handleSubmit} >
-                    <input placeholder="Synopsis" onChange={(e) => setEditDescription(e.target.value)}></input>
-                    <button>Submit</button>
+                    <input class="mb-3 mt-3 mx-14 block px-1 py-2 border-0 border-b-2 border-blue-300 focus:ring-0 focus:border-blue text-blue-500 placeholder-blue-500 placeholder-opacity-50 " type="text" placeholder="Synopsis" onChange={(e) => setEditDescription(e.target.value)}></input>
+                    <button class="inline bg-transparent hover:bg-blue-400 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-14 mb-8">Submit</button>
+                    <button class="bg-transparent hover:bg-blue-400 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-14 mb-8" onClick={(e) => {
+                      e.stopPropagation()
+                      setIsEditing(false)}}>Cancel</button>
                 </form>      
             </div>   
         </div>
