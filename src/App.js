@@ -32,21 +32,26 @@ function App() {
 
   return (
     <Router>
-      <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 px-10 ">
+
+      <div className='bg-slate-700 text-white h-20 '>
+            <div className='flex mb-8 justify-center text-2xl'>
             <NavLink exact to="/">
-              <div onClick={() => {
+              <div className='ml-10' onClick={() => {
                 setCurrentUser([])
-                setShowUsers(false)}}>Home</div>
+                setShowUsers(false)}}><div className='mt-3 hover:text-3xl'>Home</div></div>
             </NavLink>
-            <div className='users-btn' onClick={() => setShowUsers(!showUsers)} >Users</div>
-            
-            <div>
-              {showUsers === false ? <></> : allUsers.map(user => (
-                <NavLink to="/movielist" key={user.id}><span onClick={() => setCurrentUser(user)}>{user.name}</span></NavLink>
-              ))}
-              {showUsers === false ? <></> : <NavLink to="/userform" style={{textDecoration: 'none'}}><span onClick={() => setCurrentUser([])}>New User</span></NavLink>}
+            <div className='ml-10' onClick={() => setShowUsers(!showUsers)}><div className='mt-3 hover:text-3xl hover:cursor-pointer'>Users</div></div>
             </div>
-            
+            <div className='flex justify-evenly'>
+              {showUsers === false ? <></> : allUsers.map(user => (
+                <NavLink to="/movielist" key={user.id}><span className='hover:text-xl' onClick={() => setCurrentUser(user)}>{user.name}</span></NavLink>
+              ))}
+              {showUsers === false ? <></> : <NavLink to="/userform" style={{textDecoration: 'none'}}><span className='hover:text-xl' onClick={() => setCurrentUser([])}>New User</span></NavLink>}
+            </div>
+          </div>
+
+      <div className="2xl:container 2xl:mx-auto 2xl:px-0 py-3 px-10 bg-slate-700 text-center">
+          
         <Switch>
           <Route path="/movielist">
             <MovieList movies={movies} setMovies={setMovies} currentUser={currentUser}/>
