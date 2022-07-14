@@ -17,7 +17,7 @@ function MovieList({movies, setMovies, currentUser}){
     const moviesToDisplay = movies.filter(movie => movie.user_id === currentUser.id)
 
     return(
-        <div>
+        <div className="right-0 w-[75%]">
             
             {currentUser.length === 0 ? <></> : <h2 className="text-4xl leading-8 font-semibold mb-1 mt-10 px-3 text-slate-700">{currentUser.name}'s Watchlist</h2>}
             {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span className="text-slate-700 px-3 text-2xl">Add Movie for {currentUser.name}</span></NavLink>}
@@ -29,7 +29,7 @@ function MovieList({movies, setMovies, currentUser}){
                         <MovieCard movie={movie} key={movie.id} setMovies={setMovies} movies={movies} />    
                     )}
                     
-                    <button className="bg-blue-900/75 fixed bottom-0 right-0 text-white w-10 h-full text-center opacity-75 hover:opacity-100 z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveRight}>
+                    <button className="bg-blue-900/75 fixed bottom-0 right-0 text-white w-10 text-center opacity-75 hover:opacity-100 z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveRight}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-20 -ml-5"

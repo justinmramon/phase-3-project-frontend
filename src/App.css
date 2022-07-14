@@ -2,23 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* .users-btn:hover {
-  cursor: pointer;
-}
-
-.edit-form {
-  border: solid 1px black;
-  margin: 10px 10px 10px 10px;
-  width: 300px;
-}
-
-.x-button {
-  margin-left: 275px;
-}
-
-
- */
  * {
   box-sizing: border-box;
+}
+
+body{
+  background-color: #000300
 }
