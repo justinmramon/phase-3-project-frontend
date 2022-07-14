@@ -2,10 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
+=======
+
+/* .users-btn:hover {
+  cursor: pointer;
+}
+
+.edit-form {
+  border: solid 1px black;
+  margin: 10px 10px 10px 10px;
+  width: 300px;
+}
+
+.x-button {
+  margin-left: 275px;
+}
+
+
+
+ */
+>>>>>>> cee734422a77380178412e55116a7f4ddfebbfc2
  * {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 body{
   background-color: #000300
 }
+=======
+>>>>>>> cee734422a77380178412e55116a7f4ddfebbfc2
