@@ -20,7 +20,7 @@ function MovieList({movies, setMovies, currentUser}){
         <div>
             
             {currentUser.length === 0 ? <></> : <h2 className="text-center text-4xl leading-8 font-semibold mb-4 mt-10 px-3 text-white">{currentUser.name}'s Watchlist</h2>}
-            {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span className="text-white mx-auto text-2xl hover:text-3xl">Add Movie for {currentUser.name}</span></NavLink>}
+            {currentUser.length === 0 ? <></> : <NavLink to="/movieform"><span className="text-white mx-auto text-2xl hover:text-black">Add Movie for {currentUser.name}</span></NavLink>}
             <div className="my-12 mx-auto text-white">
                 <div className="relative overflow-hidden">
                     
@@ -28,7 +28,7 @@ function MovieList({movies, setMovies, currentUser}){
                     {moviesToDisplay.map((movie) => 
                         <MovieCard movie={movie} key={movie.id} setMovies={setMovies} movies={movies} />    
                     )}
-                    {currentUser.length === 0 ? <></> : <button className="bg-slate-700 fixed bottom-0 right-0 text-white w-10 h-full text-center  hover:bg-black z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveRight}>
+                    {currentUser.length === 0 ? <></> : <button className=" fixed bottom-0 right-0 text-white w-10 h-full text-center hover:text-black z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveRight}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-20 -ml-5"
@@ -46,7 +46,7 @@ function MovieList({movies, setMovies, currentUser}){
                         <span>Next</span>
                     </button>
                     }
-                    {currentUser.length === 0 ? <></> : <button className="bg-slate-700 hover:bg-black fixed bottom-0 left-0 text-white w-10 h-full text-center z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveLeft}>
+                    {currentUser.length === 0 ? <></> : <button className=" fixed bottom-0 left-0 text-white hover:text-black w-10 h-full text-center z-10 p-0 m-0 transition-all ease-in-out duration-300" onClick={moveLeft}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-12 w-20 -ml-5"

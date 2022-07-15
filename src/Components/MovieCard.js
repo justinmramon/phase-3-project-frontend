@@ -37,18 +37,18 @@ function MovieCard({movie, setMovies, movies}) {
             <div>
                   
                 <img alt="" src={currentMovie.poster_url} className="hover:popover-body"></img>
-                <p className="mt-3">{currentMovie.description}</p>
+                <p className="mt-3 bg-slate-400 rounded">{currentMovie.description}</p>
                 <button className="border-2 mr-2 px-1 py-1 border-slate mt-2 rounded hover:bg-slate-400 hover:border-slate-100" onClick={() => handleDelete(currentMovie.id)}>Delete</button>
                 <button className="border-2 border-slate px-1 py-1 mt-2 rounded hover:bg-slate-400 hover:border-slate-100" onClick={() => setIsEditing(true)}>Edit</button>
             </div>
                     
-            <div class=" border-white border-2 mt-5 max-w-xs rounded overflow-hidden shadow-lg"  style={isEditing === false ? {display: "none"} : {display: ""}}>
+            <div class=" border-white border-2 bg-slate-400 mt-5 max-w-xs rounded overflow-hidden shadow-lg"  style={isEditing === false ? {display: "none"} : {display: ""}}>
                 
                 <h3 class=" text-white text-2xl mx-14 mt-8 ">Edit Movie</h3>
                 <form onSubmit={handleSubmit} >
                     <input class="mb-3 mt-3 mx-auto block px-1 py-2 border-0 border-b-2 focus:ring-0 focus:border-blue text-slate-400 placeholder-slate-400 placeholder-opacity-50 " type="text" placeholder="Synopsis" onChange={(e) => setEditDescription(e.target.value)}></input>
-                    <button class=" bg-transparent  hover:bg-slate-400 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded mr-2 mb-8">Submit</button>
-                    <button class="bg-transparent  hover:bg-slate-400 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded  mb-8" onClick={(e) => {
+                    <button class=" bg-transparent  hover:bg-white text-white font-semibold hover:text-slate-400 py-2 px-4 border border-white  rounded mr-2 mb-8">Submit</button>
+                    <button class="bg-transparent  hover:bg-white text-white font-semibold hover:text-slate-400 py-2 px-4 border border-white rounded  mb-8" onClick={(e) => {
                       e.stopPropagation()
                       setIsEditing(false)}}>Cancel</button>
                 </form>      
