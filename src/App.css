@@ -1,38 +1,16 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap');
+
+ * {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body{
+  background-color:#1f262d;
+  /* background-image: linear-gradient(#1f262d, #14181c); */
+  /* background-image: url('https://img.freepik.com/free-vector/cinema-film-strips-blue-background_1017-23456.jpg?t=st=1657857571~exp=1657858171~hmac=4d32a00b41e9c6da42ef1213eccfcff3a1d4121e1aa0a71f7ea4984cf606b91a&w=1060'); */
+  background-size: cover;
+  font-family: 'Manrope', sans-serif;
 }
